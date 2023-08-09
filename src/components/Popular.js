@@ -3,6 +3,7 @@ import "./Popular.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
 import { API_KEY, API_URL } from "../Routes";
+import { Link } from "react-router-dom";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -41,12 +42,14 @@ function Popular() {
             return (
               <SplideSlide key={recipe.id}>
                 <div className="card">
-                  <p>{recipe.title}</p>
-                  <img
-                    className="card-image"
-                    src={recipe.image}
-                    alt={recipe.title}
-                  />
+                  <Link to={"/recipe/" + recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img
+                      className="card-image"
+                      src={recipe.image}
+                      alt={recipe.title}
+                    />
+                  </Link>
                 </div>
               </SplideSlide>
             );

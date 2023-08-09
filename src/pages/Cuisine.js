@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Link, useParams } from "react-router-dom";
 import "./Cuisine.css";
 import { API_KEY, API_URL } from "../Routes";
+import { Link, useParams } from "react-router-dom";
 
 function Cuisine() {
   const [cuisine, setCuisine] = useState([]);
@@ -24,7 +24,6 @@ function Cuisine() {
       {cuisine.map((item) => {
         return (
           <div key={item.id}>
-            {" "}
             <img className="card-img" src={item.image} alt="Recipe" />
             <h4>{item.title}</h4>
           </div>

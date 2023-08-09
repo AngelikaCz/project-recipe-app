@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { API_KEY, API_URL } from "../Routes";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import "./Searched.css";
 
 function Searched() {
@@ -23,8 +23,10 @@ function Searched() {
       {searchedRecipes.map((item) => {
         return (
           <div className="card" key={item.id}>
-            <img src={item.image} alt="Recipe" />
-            <h4>{item.title}</h4>
+            <Link to={"/recipe/" + item.id}>
+              <img src={item.image} alt="Recipe" />
+              <h4>{item.title}</h4>
+            </Link>
           </div>
         );
       })}
