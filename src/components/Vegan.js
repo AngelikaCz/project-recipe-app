@@ -1,26 +1,27 @@
 import React, { useEffect, useState } from "react";
-import "./Popular.css";
+import "./Vegan.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import { API_KEY, API_URL } from "../Routes";
 
-function Popular() {
-  const [popular, setPopular] = useState([]);
+function Vegan() {
+  const [vegan, setVegan] = useState([]);
 
   useEffect(() => {
-    getPopular();
+    getVegan();
   }, []);
 
-  const getPopular = async () => {
-    const check = localStorage.getItem("popular");
+  const getVegan = async () => {
+    const check = localStorage.getItem("vegan");
 
     if (check) {
-      setPopular(JSON.parse(check));
+      setVegan(JSON.parse(check));
     } else {
-      const api = await fetch(`${API_URL}random?apiKey=${API_KEY}&number=9`);
+      const api = await fetch(
+        `https://api.spoonacular.com/recipes/random?apiKey=ce1e25bd03cc4691830b622b58c81275&number=9&tags=vegan`
+      );
       const data = await api.json();
-      localStorage.setItem("popular", JSON.stringify(data.recipes));
-      setPopular(data.recipes);
+      localStorage.setItem("vegan", JSON.stringify(data.recipes));
+      setVegan(data.recipes);
       console.log(data.recipes);
     }
   };
@@ -28,17 +29,17 @@ function Popular() {
   return (
     <div>
       <div className="wrapper">
-        <h3>Popular Picks</h3>
+        <h3>The Best Vegan Picks</h3>
         <Splide
           options={{
-            perPage: 4,
+            perPage: 3,
             arrows: false,
             pagination: false,
             drag: "free",
             gap: "50px",
           }}
         >
-          {popular.map((recipe) => {
+          {vegan.map((recipe) => {
             return (
               <SplideSlide key={recipe.id}>
                 <div className="card">
@@ -58,4 +59,4 @@ function Popular() {
   );
 }
 
-export default Popular;
+export default Vegan;

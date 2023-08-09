@@ -1,12 +1,12 @@
-import Veggie from "../components/Veggie";
+import Vegan from "../components/Vegan";
 import Popular from "../components/Popular";
 import React from "react";
 
 function Home() {
   return (
     <div>
+      <Vegan />
       <Popular />
-      <Veggie />
     </div>
   );
 }
