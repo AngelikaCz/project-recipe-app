@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Vegan.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
+import { API_KEY, API_URL } from "../Routes";
 
 function Vegan() {
   const [vegan, setVegan] = useState([]);
@@ -17,7 +18,7 @@ function Vegan() {
       setVegan(JSON.parse(check));
     } else {
       const api = await fetch(
-        `https://api.spoonacular.com/recipes/random?apiKey=ce1e25bd03cc4691830b622b58c81275&number=9&tags=vegan`
+        `${API_URL}random?apiKey=${API_KEY}&number=9&tags=vegan`
       );
       const data = await api.json();
       localStorage.setItem("vegan", JSON.stringify(data.recipes));

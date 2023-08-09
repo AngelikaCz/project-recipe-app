@@ -1,0 +1,25 @@
+form {
+  margin-top: 50px;
+  position: relative;
+  width: 100%;
+}
+
+input {
+  border: none;
+  background-color: #494949;
+  font-size: 15px;
+  color: #fff;
+  padding: 10px 30px;
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  justify-content: center;
+}
+
+.icon {
+  position: absolute;
+  top: 50%;
+  left: 0%;
+  transform: translate(100%, -50%);
+  color: #fff;
+}
