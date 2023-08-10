@@ -2,6 +2,7 @@ import Pages from "./pages/Pages";
 import Category from "./components/Category";
 import { BrowserRouter } from "react-router-dom";
 import Search from "./components/Search";
+import ShoppingListWrapper from "./shopping/ShoppingListWrapper";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Search />
         <Category />
         <Pages />
+        <ShoppingListWrapper />
       </BrowserRouter>
     </div>
   );
