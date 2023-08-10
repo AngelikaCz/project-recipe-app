@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import "./Cuisine.css";
 import { API_KEY, API_URL } from "../Routes";
 import { Link, useParams } from "react-router-dom";
@@ -24,8 +23,10 @@ function Cuisine() {
       {cuisine.map((item) => {
         return (
           <div key={item.id}>
-            <img className="card-img" src={item.image} alt="Recipe" />
-            <h4>{item.title}</h4>
+            <Link to={"/recipe/" + item.id}>
+              <img className="card-img" src={item.image} alt="Recipe" />
+              <h4>{item.title}</h4>
+            </Link>
           </div>
         );
       })}

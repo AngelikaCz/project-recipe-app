@@ -6,21 +6,17 @@ import "./Category.css";
 function Category() {
   return (
     <div className="list">
-      <NavLink to={"/cuisine/Italian"}>
-        <FaPizzaSlice />
-        <h4>Italian</h4>
+      <NavLink className="link" to={"/cuisine/Italian"}>
+        <FaPizzaSlice className="icon" />
       </NavLink>
-      <NavLink to={"/cuisine/American"}>
-        <FaHamburger />
-        <h4>American</h4>
+      <NavLink className="link" to={"/cuisine/American"}>
+        <FaHamburger className="icon" />
       </NavLink>
-      <NavLink to={"/cuisine/Thai"}>
-        <GiNoodles />
-        <h4>Thai Food</h4>
+      <NavLink className="link" to={"/cuisine/Thai"}>
+        <GiNoodles className="icon" />
       </NavLink>
-      <NavLink to={"/cuisine/Japanese"}>
-        <GiChopsticks />
-        <h4>Japanese</h4>
+      <NavLink className="link" to={"/cuisine/Japanese"}>
+        <GiChopsticks className="icon" />
       </NavLink>
     </div>
   );

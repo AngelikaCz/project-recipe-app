@@ -3,3 +3,28 @@
   justify-content: center;
   margin: 20px 0;
 }
+
+.link {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  margin-right: 20px;
+  text-decoration: none;
+  background-color: #494949;
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  transform: scale(0.8);
+}
+
+.icon {
+  color: #fff;
+  font-size: 30px;
+  margin-left: -10px;
+}
+
+.active {
+  background-color: #35e280;
+}
