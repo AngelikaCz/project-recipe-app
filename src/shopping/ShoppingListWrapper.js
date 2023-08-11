@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ShoppingListForm from "./ShoppingListFrom";
 import { v4 as uuidv4 } from "uuid";
 import ShoppingList from "./ShoppingList";
+import { EditShoppingList } from "./EditShoppingListForm";
 uuidv4();
 
 function ShoppingListWrapper() {
@@ -10,16 +11,14 @@ function ShoppingListWrapper() {
   const addProduct = (product) => {
     setProduct([
       ...products,
-      { id: uuidv4(), item: product, completed: false, isEditing: false },
+      { id: uuidv4(), item: product, bought: false, isEditing: false },
     ]);
   };
 
-  const toggleComplete = (id) => {
+  const toggleBought = (id) => {
     setProduct(
       products.map((product) =>
-        product.id === id
-          ? { ...product, completed: !product.completed }
-          : product
+        product.id === id ? { ...product, bought: !product.bought } : product
       )
     );
   };
@@ -28,17 +27,42 @@ function ShoppingListWrapper() {
     setProduct(products.filter((product) => product.id !== id));
   };
 
+  const editProduct = (id) => {
+    setProduct(
+      products.map((product) =>
+        product.id === id
+          ? { ...product, isEditing: !product.isEditing }
+          : product
+      )
+    );
+  };
+
+  const editItem = (item, id) => {
+    setProduct(
+      products.map((product) =>
+        product.id === id
+          ? { ...product, item, isEditing: !product.isEditing }
+          : product
+      )
+    );
+  };
+
   return (
     <div className="shopping-wrapper">
       <ShoppingListForm addProduct={addProduct} />
-      {products.map((product, index) => (
-        <ShoppingList
-          item={product}
-          key={index}
-          toggleComplete={toggleComplete}
-          deleteProduct={deleteProduct}
-        />
-      ))}
+      {products.map((product, index) =>
+        product.isEditing ? (
+          <EditShoppingList editProduct={editItem} item={product} />
+        ) : (
+          <ShoppingList
+            item={product}
+            key={index}
+            toggleBought={toggleBought}
+            deleteProduct={deleteProduct}
+            editProduct={editProduct}
+          />
+        )
+      )}
     </div>
   );
 }
