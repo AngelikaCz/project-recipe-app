@@ -8,11 +8,18 @@ function Cuisine() {
   let params = useParams();
 
   const getCuisine = async (name) => {
-    const data = await fetch(
-      `${API_URL}complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
-    );
-    const recipes = await data.json();
-    setCuisine(recipes.results);
+    try {
+      const data = await fetch(
+        `${API_URL}complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
+      );
+      const recipes = await data.json();
+      if (recipes.status === "failure") {
+        throw new Error(recipes.message);
+      }
+      setCuisine(recipes.results);
+    } catch (err) {
+      console.error(err);
+    }
   };
   useEffect(() => {
     getCuisine(params.type);
