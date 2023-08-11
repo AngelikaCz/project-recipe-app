@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Cuisine.css";
-import { API_KEY, API_URL } from "../Routes";
+import { API_URL } from "../Routes";
 import { Link, useParams } from "react-router-dom";
 
 function Cuisine() {
@@ -9,7 +9,7 @@ function Cuisine() {
 
   const getCuisine = async (name) => {
     const data = await fetch(
-      `${API_URL}complexSearch?apiKey=${API_KEY}&cuisine=${name}`
+      `${API_URL}complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&cuisine=${name}`
     );
     const recipes = await data.json();
     setCuisine(recipes.results);

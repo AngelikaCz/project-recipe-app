@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API_KEY, API_URL } from "../Routes";
+import { API_URL } from "../Routes";
 import { useParams, Link } from "react-router-dom";
 import "./Searched.css";
 
@@ -9,7 +9,7 @@ function Searched() {
 
   const getSearched = async (name) => {
     const data = await fetch(
-      `${API_URL}complexSearch?apiKey=${API_KEY}&query=${name}`
+      `${API_URL}complexSearch?apiKey=${process.env.REACT_APP_API_KEY}&query=${name}`
     );
     const recipes = await data.json();
     setSearchedRecipes(recipes.results);

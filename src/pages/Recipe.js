@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API_KEY, API_URL } from "../Routes";
+import { API_URL } from "../Routes";
 import { useParams } from "react-router-dom";
 import "./Recipe.css";
 
@@ -10,7 +10,7 @@ function Recipe() {
 
   const fetchDetails = async () => {
     const data = await fetch(
-      `${API_URL}${params.name}/information?apiKey=${API_KEY}`
+      `${API_URL}${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
     );
     const detailData = await data.json();
     setDetails(detailData);

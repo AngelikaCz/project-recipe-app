@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./Vegan.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import { API_KEY, API_URL } from "../Routes";
+import { API_URL } from "../Routes";
 import { Link } from "react-router-dom";
 
 function Vegan() {
@@ -19,7 +19,7 @@ function Vegan() {
       setVegan(JSON.parse(check));
     } else {
       const api = await fetch(
-        `${API_URL}random?apiKey=${API_KEY}&number=9&tags=vegan`
+        `${API_URL}random?apiKey=${process.env.REACT_APP_API_KEY}&number=9&tags=vegan`
       );
       const data = await api.json();
       localStorage.setItem("vegan", JSON.stringify(data.recipes));
