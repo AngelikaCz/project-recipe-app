@@ -9,11 +9,18 @@ function Recipe() {
   const [activeTab, setActiveTab] = useState("instructions");
 
   const fetchDetails = async () => {
-    const data = await fetch(
-      `${API_URL}${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
-    );
-    const detailData = await data.json();
-    setDetails(detailData);
+    try {
+      const data = await fetch(
+        `${API_URL}${params.name}/information?apiKey=${process.env.REACT_APP_API_KEY}`
+      );
+      const detailData = await data.json();
+      if (detailData === "failure") {
+        throw new Error(detailData.message);
+      }
+      setDetails(detailData);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   useEffect(() => {
