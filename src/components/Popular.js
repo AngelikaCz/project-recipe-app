@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./Popular.css";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/splide/dist/css/splide.min.css";
-import { API_KEY, API_URL } from "../Routes";
+import { API_URL } from "../Routes";
+import { Link } from "react-router-dom";
 
 function Popular() {
   const [popular, setPopular] = useState([]);
@@ -17,11 +18,12 @@ function Popular() {
     if (check) {
       setPopular(JSON.parse(check));
     } else {
-      const api = await fetch(`${API_URL}random?apiKey=${API_KEY}&number=9`);
+      const api = await fetch(
+        `${API_URL}random?apiKey=${process.env.REACT_APP_API_KEY}&number=9`
+      );
       const data = await api.json();
       localStorage.setItem("popular", JSON.stringify(data.recipes));
       setPopular(data.recipes);
-      console.log(data.recipes);
     }
   };
 
@@ -42,12 +44,14 @@ function Popular() {
             return (
               <SplideSlide key={recipe.id}>
                 <div className="card">
-                  <p>{recipe.title}</p>
-                  <img
-                    className="card-image"
-                    src={recipe.image}
-                    alt={recipe.title}
-                  />
+                  <Link to={"/recipe/" + recipe.id}>
+                    <p>{recipe.title}</p>
+                    <img
+                      className="card-image"
+                      src={recipe.image}
+                      alt={recipe.title}
+                    />
+                  </Link>
                 </div>
               </SplideSlide>
             );
